@@ -29,21 +29,22 @@ public class JpaUserDetailsService implements UserDetailsService {
 
         log.debug("inside loadUserByUsername");
 
-        User user = userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("username "+username+" not found"));
+        return userRepository.findByUsername(username).orElseThrow(
+                ()-> new UsernameNotFoundException("username "+username+" not found"));
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.getEnabled(), user.getAccountNonExpired(), user.getCredentialsNonExpired(),
-                user.getAccountNonLocked(), convertToGrantedAuthorites(user.getAuthorities()));
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+//                user.getEnabled(), user.getAccountNonExpired(), user.getCredentialsNonExpired(),
+//                user.getAccountNonLocked(), convertToGrantedAuthorites(user.getAuthorities()));
     }
 
-    private Collection<? extends GrantedAuthority> convertToGrantedAuthorites(Set<Authority> authorities) {
-        if(authorities!=null && authorities.size()>0){
-            return authorities.stream()
-                    .map(Authority::getPermission)
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
-        }else{
-            return new HashSet<>();
-        }
-    }
+//    private Collection<? extends GrantedAuthority> convertToGrantedAuthorites(Set<Authority> authorities) {
+//        if(authorities!=null && authorities.size()>0){
+//            return authorities.stream()
+//                    .map(Authority::getPermission)
+//                    .map(SimpleGrantedAuthority::new)
+//                    .collect(Collectors.toList());
+//        }else{
+//            return new HashSet<>();
+//        }
+//    }
 }
