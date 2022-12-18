@@ -1,0 +1,3 @@
+[submodule "backend-social-network"]
+	path = backend-social-network
+	url = https://github.com/serlesen/backend-social-network/tree/chapter_3_2
