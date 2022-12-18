@@ -20,6 +20,7 @@ public class UserUnlockedService {
 
     @Scheduled(fixedRate = 5000)
     public void unlockAccounts(){
+
         log.debug("running unlock account Schedular");
 
         List<User> lockedUsers = userRepository.findAllByAccountNonLockedAndLastModifiedDateIsBefore(false,
