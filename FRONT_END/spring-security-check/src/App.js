@@ -19,21 +19,26 @@ function App() {
 
   const onSubmit = async() =>{
     console.log(body1);
-    // const res = await fetch('http://localhost:8080/v1/signIn',
+    // const res = await fetch('http://localhost:8080/v1/setCookie',
     //     {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({
-    //         "login":"login",
-    //         "password":"the-password"
-    //       })
+    //       method: 'GET'
+    //       // headers: { 'Content-Type': 'application/json' }
+    //       // body: JSON.stringify({
+    //       //   "login":"login",
+    //       //   "password":"the-password"
+    //       // })
     //     }
     // );
     // const body = await res.json();
+    // console.log(body);
+    //       console.log("---------");
+    //   Object.keys(res).map((item, i)=> console.log(res[item]));
+    //   console.log("---------");
     axios({
       method:'POST',
       url:"http://localhost:8080/v1/signIn",
-      data:body1,
+      withCredentials:true,                      //to accept cookies
+      data:body1
       // headers: new Headers({
       //   'Accept': 'application/json',
       //   'Access-Control-Allow-Origin': '*',
@@ -42,11 +47,33 @@ function App() {
       // })
     }).then((res)=>{
       console.log("---------");
-      console.log(res.data);
+      // Object.keys(res).map((item, i)=> console.log(res[item]));
+      console.log(res);
       console.log("---------");
-
+      // Object.keys(res['']).map((item, i)=> console.log(res[item]));
     })
     // console.log(body);
+  }
+
+  const getUserDetails= async()=>{
+    //     const res = await fetch('http://localhost:8080/v1/users/234/profile',
+    //     {
+    //       method: 'GET',
+    //       credentials: 'same-origin'
+    //     }
+    // );
+    // const body = await res.json();
+
+    axios({
+      method:'GET',
+      url:"http://localhost:8080/v1/users/234/profile",
+      withCredentials:true,            
+    }).then((res)=>{
+      console.log("---------");
+      console.log(res);
+      console.log("---------");
+    })
+  
   }
 
   return (
@@ -56,6 +83,7 @@ function App() {
         <input type="text" name='password' value={password} onChange={onFieldChange} />
         <input type="submit" value="Submit" />
       </form>
+      <button onClick={getUserDetails}>click</button>
     </div>
   );
 }

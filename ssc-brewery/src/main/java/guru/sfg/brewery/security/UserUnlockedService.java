@@ -18,7 +18,7 @@ public class UserUnlockedService {
 
     private final UserRepository userRepository;
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 500000000)
     public void unlockAccounts(){
 
         log.debug("running unlock account Schedular");

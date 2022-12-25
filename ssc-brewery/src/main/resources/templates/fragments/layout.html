@@ -1,8 +1,6 @@
 <!doctype html>
 <html th:fragment="layout (template, menu)">
-
 <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,9 +18,7 @@
     <link rel="stylesheet" th:href="@{/resources/css/brewery.css}"/>
 
 </head>
-
 <body>
-
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -64,6 +60,11 @@
                     <span>Breweries</span>
                 </li>
 
+                <li th:replace="::menuItem ('/user/register2fa','user','register','th-list','Enable 2FA')">
+                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                    <span>Enable 2FA</span>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -88,5 +89,4 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
 </body>
-
 </html>

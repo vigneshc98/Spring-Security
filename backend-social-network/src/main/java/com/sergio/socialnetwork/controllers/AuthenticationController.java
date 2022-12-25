@@ -32,6 +32,22 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+//    @GetMapping("/setCookie")
+//    public ResponseEntity<UserDto> setCookie(HttpServletResponse response){
+//        UserDto user = new UserDto();
+//        user.setId(1L);
+//        user.setLogin("login");
+//        Cookie authCookie = new Cookie(CookieAuthenticationFilter.COOKIE_NAME, authenticationService.createToken(user));
+//        authCookie.setHttpOnly(true);
+//        authCookie.setSecure(true);
+//        authCookie.setMaxAge((int) Duration.of(1, ChronoUnit.DAYS).toSeconds());
+//        authCookie.setPath("/");
+//
+//        response.addCookie(authCookie);
+//
+//        return ResponseEntity.ok(user);
+//    }
+
     @PostMapping("/signIn")
     public ResponseEntity<UserDto> signIn(@AuthenticationPrincipal UserDto user,
                                           HttpServletResponse servletResponse) {

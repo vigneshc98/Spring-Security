@@ -29,10 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().deleteCookies(CookieAuthenticationFilter.COOKIE_NAME)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/v1/signIn", "/v1/signUp").permitAll()
+                .antMatchers(HttpMethod.POST, "/v1/signIn", "/v1/signUp","/v1/setCookie").permitAll()
+                .antMatchers(HttpMethod.GET, "/v1/setCookie").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .cors();
+                .cors().disable();
     }
 
 }

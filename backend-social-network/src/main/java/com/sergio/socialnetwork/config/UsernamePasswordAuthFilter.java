@@ -23,6 +23,10 @@ public class UsernamePasswordAuthFilter extends OncePerRequestFilter {
             HttpServletResponse httpServletResponse,
             FilterChain filterChain) throws ServletException, IOException {
 
+        if("/v1/setCookie".equals(httpServletRequest.getServletPath())){
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+        }
+
         if ("/v1/signIn".equals(httpServletRequest.getServletPath())
                 && HttpMethod.POST.matches(httpServletRequest.getMethod())) {
             CredentialsDto credentialsDto = MAPPER.readValue(httpServletRequest.getInputStream(), CredentialsDto.class);

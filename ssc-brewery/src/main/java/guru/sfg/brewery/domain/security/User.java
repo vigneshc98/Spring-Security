@@ -64,6 +64,17 @@ public class User implements UserDetails, CredentialsContainer {
                 .collect(Collectors.toSet());
     }
 
+    @Builder.Default
+    private Boolean useGoogle2fa = false;
+
+    private String google2FaSecret;
+
+    //once the user log in spring security will have this User object. and we are comparing
+    // "userGoogle2fa" with "google2faRequired", if both are true, then enable 2fa. after
+    //2fa done make "google2faRequired" as false.
+    @Transient
+    private Boolean google2faRequired = true;
+
     @Override
     public boolean isAccountNonExpired() {
         return this.accountNonExpired;
